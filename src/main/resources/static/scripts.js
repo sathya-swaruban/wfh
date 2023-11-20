@@ -11,9 +11,9 @@ async function submitRequest() {
         "fromDate": fromDate.value,
         "toDate": toDate.value,
         "fromTime": fromTime.value,
-        "toDate": toTime.value
+        "toTime": toTime.value
     };
-    await fetch('http://localhost:8080/add_request', {
+    await fetch('http://localhost:8080/submit', {
         method: "POST",
         headers: {
             "Accept": "application/json",
