@@ -1,0 +1,1 @@
+curl -X POST 'http://localhost:8080/submit' -H 'Content-type:application/json' -d '{"fromDate": "2023-11-21","toDate":"2023-11-21","fromTime":"09:00","toTime":"18:15"}'
