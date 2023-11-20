@@ -1,5 +1,6 @@
 package com.capstone.wfh;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
@@ -16,14 +17,14 @@ public class WfhController {
         this.wfhService = wfhService;
     }
 
-    @GetMapping(path = "/date")
+    @GetMapping(path = "/current_date")
     public LocalDate get_date() {
         return LocalDate.now();
     }
 
     @PostMapping(path = "/submit")
     @ResponseBody
-    public WfhRequest submit_request(@RequestBody WfhRequest wfhRequest) {
+    public WfhRequest submit_request(@RequestBody @Valid WfhRequest wfhRequest) {
         return wfhService.submit(wfhRequest);
     }
 
