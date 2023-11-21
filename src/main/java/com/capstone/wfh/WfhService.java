@@ -1,7 +1,10 @@
 package com.capstone.wfh;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
+
 import java.util.List;
 
 @Service
@@ -15,7 +18,12 @@ public class WfhService {
     }
 
     public WfhRequest submit(WfhRequest wfhRequest) {
-        return wfhRepository.save(wfhRequest);
+        List<WfhRequest> tempList = wfhRepository.findByFromDate(wfhRequest.getFromDate());
+        if (tempList.isEmpty()) {
+            return wfhRepository.save(wfhRequest);
+        } else {
+            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST);
+        }
     }
 
     public List<WfhRequest> getAll() {
