@@ -1,5 +1,6 @@
-package com.capstone.wfh;
+package com.capstone.wfh.repository;
 
+import com.capstone.wfh.model.WfhRequest;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
