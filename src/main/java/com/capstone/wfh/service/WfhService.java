@@ -1,9 +1,6 @@
 package com.capstone.wfh.service;
 
-import com.capstone.wfh.exception.DifferentDatesException;
-import com.capstone.wfh.exception.InvalidTimeRangeException;
-import com.capstone.wfh.exception.RequestExistsException;
-import com.capstone.wfh.exception.WeekendException;
+import com.capstone.wfh.exception.*;
 import com.capstone.wfh.model.WfhRequest;
 import com.capstone.wfh.repository.WfhRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +31,10 @@ public class WfhService {
             throw new DifferentDatesException("ERROR: Provided from-date and to-date are different.");
         } else if (LocalDate.parse(fromDate).get(ChronoField.DAY_OF_WEEK) >= 6) {
             throw new WeekendException("ERROR: Provided from-date and to-date must not be a weekend.");
-        } else if (LocalTime.parse(fromTime).getHour() > LocalTime.parse(toTime).getHour()) {
+        } else if (LocalTime.parse(fromTime).getHour() >= LocalTime.parse(toTime).getHour()) {
             throw new InvalidTimeRangeException("ERROR: Provided from-time should be less than to-time.");
+        } else if (LocalTime.parse(toTime).getHour() >= LocalTime.now().getHour()) {
+            throw new InvalidToTimeException("ERROR: Provided to-time hour is greater than current time hour.");
         } else if (!wfhRepository.findByFromDate(fromDate).isEmpty()) {
             throw new RequestExistsException("ERROR: WFH Request already exists for the provided date.");
         }
