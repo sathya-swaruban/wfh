@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @SpringBootApplication
+@SuppressWarnings("all")
 public class WfhApplication {
 
     public static void main(String[] args) {
