@@ -1,6 +1,7 @@
 package com.capstone.wfh.service;
 
 import com.capstone.wfh.exception.DifferentDatesException;
+import com.capstone.wfh.exception.InvalidTimeRangeException;
 import com.capstone.wfh.exception.RequestExistsException;
 import com.capstone.wfh.exception.WeekendException;
 import com.capstone.wfh.model.WfhRequest;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.temporal.ChronoField;
 import java.util.List;
 
@@ -22,18 +24,25 @@ public class WfhService {
         this.wfhRepository = wfhRepository;
     }
 
-    private void validateDate(String fromDateString, String toDateString) {
-        if (!fromDateString.equals(toDateString)) {
-            throw new DifferentDatesException("Provided from-date and to-date are different!");
-        } else if (LocalDate.parse(fromDateString).get(ChronoField.DAY_OF_WEEK) >= 6) {
-            throw new WeekendException("Provided date must not be a weekend!");
-        } else if (!wfhRepository.findByFromDate(fromDateString).isEmpty()) {
-            throw new RequestExistsException("WFH Request already exists for this date!");
+    private void validateDateAndTime(WfhRequest wfhRequest) {
+        String fromDate = wfhRequest.getFromDate();
+        String toDate = wfhRequest.getToDate();
+        String fromTime = wfhRequest.getFromTime();
+        String toTime = wfhRequest.getToTime();
+
+        if (!fromDate.equals(toDate)) {
+            throw new DifferentDatesException("ERROR: Provided from-date and to-date are different.");
+        } else if (LocalDate.parse(fromDate).get(ChronoField.DAY_OF_WEEK) >= 6) {
+            throw new WeekendException("ERROR: Provided from-date and to-date must not be a weekend.");
+        } else if (LocalTime.parse(fromTime).getHour() > LocalTime.parse(toTime).getHour()) {
+            throw new InvalidTimeRangeException("ERROR: Provided from-time should be less than to-time.");
+        } else if (!wfhRepository.findByFromDate(fromDate).isEmpty()) {
+            throw new RequestExistsException("ERROR: WFH Request already exists for the provided date.");
         }
     }
 
     public WfhRequest submit(WfhRequest wfhRequest) {
-        validateDate(wfhRequest.getFromDate(), wfhRequest.getToDate());
+        validateDateAndTime(wfhRequest);
         return wfhRepository.save(wfhRequest);
     }
 
