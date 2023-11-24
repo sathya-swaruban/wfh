@@ -1,4 +1,4 @@
-package com.capstone.wfh;
+package com.capstone.wfh.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotEmpty;
