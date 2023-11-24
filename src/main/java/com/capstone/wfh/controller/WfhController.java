@@ -22,7 +22,7 @@ public class WfhController {
     }
 
     @GetMapping(path = "/current_date")
-    public ResponseEntity<LocalDate> get_date() {
+    public ResponseEntity<LocalDate> getCurrentDate() {
         return new ResponseEntity<>(LocalDate.now(), HttpStatus.ACCEPTED);
     }
 
@@ -33,7 +33,7 @@ public class WfhController {
 
     @PostMapping(path = "/submit")
     @ResponseBody
-    public ResponseEntity<WfhRequest> submit_request(@RequestBody @Valid WfhRequest wfhRequest) {
+    public ResponseEntity<WfhRequest> submitRequest(@RequestBody @Valid WfhRequest wfhRequest) {
         return new ResponseEntity<>(wfhService.submit(wfhRequest), HttpStatus.CREATED);
     }
 
