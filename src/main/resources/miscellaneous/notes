@@ -1,3 +1,7 @@
+To-Do:
+-   Improve exception messages wordings.
+-   read data from properties file which contains the exception messages.
+
 Future Enhancements:
 -   calculate daily working hours.
 -   add holiday collection, and check wfh is not a holiday date.
