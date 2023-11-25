@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@SuppressWarnings("all")
+@SuppressWarnings(value = "all")
 public class WfhController {
 
     @Autowired
