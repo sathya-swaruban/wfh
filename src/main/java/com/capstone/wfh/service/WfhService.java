@@ -37,7 +37,7 @@ public class WfhService {
             throw new InvalidToTimeException("ERROR: Provided to-time hour is greater than current time hour.");
         } else if (LocalTime.parse(toTime).getMinute() >= LocalTime.now().getMinute()) {
             throw new InvalidToTimeException("ERROR: Provided to-time minute is greater than current time minute.");
-        }else if (!wfhRepository.findByFromDate(fromDate).isEmpty()) {
+        } else if (!wfhRepository.findByFromDate(fromDate).isEmpty()) {
             throw new RequestExistsException("ERROR: WFH Request already exists for the provided date.");
         }
     }
