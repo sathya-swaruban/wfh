@@ -28,17 +28,17 @@ public class WfhService {
         String toTime = wfhRequest.getToTime();
 
         if (!fromDate.equals(toDate)) {
-            throw new DifferentDatesException("ERROR: Provided from-date and to-date are different.");
+            throw new DifferentDatesException();
         } else if (LocalDate.parse(fromDate).get(ChronoField.DAY_OF_WEEK) >= 6) {
-            throw new WeekendException("ERROR: Provided from-date and to-date must not be a weekend.");
+            throw new WeekendException();
         } else if (LocalTime.parse(fromTime).getHour() >= LocalTime.parse(toTime).getHour()) {
-            throw new InvalidTimeRangeException("ERROR: Provided from-time should be less than to-time.");
+            throw new InvalidTimeRangeException();
         } else if (LocalTime.parse(toTime).getHour() > LocalTime.now().getHour()) {
-            throw new InvalidToTimeException("ERROR: Provided to-time hour is greater than current time hour.");
+            throw new InvalidToTimeHourException();
         } else if (LocalTime.parse(toTime).getMinute() >= LocalTime.now().getMinute()) {
-            throw new InvalidToTimeException("ERROR: Provided to-time minute is greater than current time minute.");
+            throw new InvalidToTimeMinuteException();
         } else if (!wfhRepository.findByFromDate(fromDate).isEmpty()) {
-            throw new RequestExistsException("ERROR: WFH Request already exists for the provided date.");
+            throw new RequestExistsException();
         }
     }
 
