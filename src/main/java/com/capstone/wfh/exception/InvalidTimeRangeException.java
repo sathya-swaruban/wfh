@@ -1,7 +1,7 @@
 package com.capstone.wfh.exception;
 
 public class InvalidTimeRangeException extends RuntimeException {
-    public InvalidTimeRangeException(String message) {
-        super(message);
+    public InvalidTimeRangeException() {
+        super("ERROR: Provided from-time should be less than to-time.");
     }
 }
