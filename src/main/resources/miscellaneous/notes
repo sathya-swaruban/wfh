@@ -1,4 +1,5 @@
 To-Do:
+-   Re-write the validateDateAndTime() logics.
 -   Improve exception messages wordings.
 -   read data from properties file which contains the exception messages.
 
