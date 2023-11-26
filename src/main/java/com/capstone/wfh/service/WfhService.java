@@ -35,7 +35,7 @@ public class WfhService {
             throw new InvalidTimeRangeException();
         } else if (LocalTime.parse(toTime).getHour() > LocalTime.now().getHour()) {
             throw new InvalidToTimeHourException();
-        } else if (LocalTime.parse(toTime).getMinute() >= LocalTime.now().getMinute()) {
+        } else if (fromDate.equals(LocalDate.now().toString()) && LocalTime.parse(toTime).getMinute() >= LocalTime.now().getMinute()) {
             throw new InvalidToTimeMinuteException();
         } else if (!wfhRepository.findByFromDate(fromDate).isEmpty()) {
             throw new RequestExistsException();
