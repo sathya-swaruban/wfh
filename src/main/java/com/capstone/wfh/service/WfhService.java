@@ -33,7 +33,7 @@ public class WfhService {
             throw new WeekendException();
         } else if (LocalTime.parse(fromTime).getHour() >= LocalTime.parse(toTime).getHour()) {
             throw new InvalidTimeRangeException();
-        } else if (LocalTime.parse(toTime).getHour() > LocalTime.now().getHour()) {
+        } else if (fromDate.equals(LocalDate.now().toString()) && LocalTime.parse(toTime).getHour() > LocalTime.now().getHour()) {
             throw new InvalidToTimeHourException();
         } else if (fromDate.equals(LocalDate.now().toString()) && LocalTime.parse(toTime).getMinute() >= LocalTime.now().getMinute()) {
             throw new InvalidToTimeMinuteException();
