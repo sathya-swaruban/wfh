@@ -6,10 +6,10 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDate;
-import java.util.List;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @SuppressWarnings(value = "all")
@@ -20,16 +20,6 @@ public class WfhController {
 
     public WfhController(WfhService wfhService) {
         this.wfhService = wfhService;
-    }
-
-    @GetMapping(path = "/current_date")
-    public ResponseEntity<LocalDate> getCurrentDate() {
-        return new ResponseEntity<>(LocalDate.now(), HttpStatus.ACCEPTED);
-    }
-
-    @GetMapping(path = "/requests")
-    public ResponseEntity<List<WfhRequest>> getAllRequests() {
-        return new ResponseEntity<>(wfhService.getAll(), HttpStatus.OK);
     }
 
     @PostMapping(path = "/submit")
