@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoField;
-import java.util.List;
 
 @Service
 public class WfhService {
@@ -45,10 +44,6 @@ public class WfhService {
     public WfhRequest submit(WfhRequest wfhRequest) {
         validateDateAndTime(wfhRequest);
         return wfhRepository.save(wfhRequest);
-    }
-
-    public List<WfhRequest> getAll() {
-        return wfhRepository.findAll();
     }
 
 }
