@@ -28,6 +28,8 @@ public class WfhService {
 
         if (!fromDate.equals(toDate)) {
             throw new DifferentDatesException();
+        } else if (LocalDate.parse(fromDate).isAfter(LocalDate.now())) {
+            throw new InvalidDatesException();
         } else if (LocalDate.parse(fromDate).get(ChronoField.DAY_OF_WEEK) >= 6) {
             throw new WeekendException();
         } else if (LocalTime.parse(fromTime).getHour() >= LocalTime.parse(toTime).getHour()) {
