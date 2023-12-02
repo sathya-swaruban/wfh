@@ -16,6 +16,13 @@ public class ApiExceptionHandler {
                 .body(exception.getMessage());
     }
 
+    @ExceptionHandler(InvalidDatesException.class)
+    protected ResponseEntity<String> handleInvalidDatesException(InvalidDatesException exception){
+        return ResponseEntity
+                .badRequest()
+                .body(exception.getMessage());
+    }
+
     @ExceptionHandler(InvalidTimeRangeException.class)
     protected ResponseEntity<String> handleInvalidTimeRangeException(InvalidTimeRangeException exception){
         return ResponseEntity
