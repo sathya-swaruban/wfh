@@ -1,6 +1,7 @@
 package com.capstone.wfh.controller;
 
 import com.capstone.wfh.model.WfhRequest;
+import com.capstone.wfh.model.WfhRequestDTO;
 import com.capstone.wfh.service.WfhService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,8 @@ public class WfhController {
 
     @PostMapping(path = "/submit")
     @ResponseBody
-    public ResponseEntity<WfhRequest> submitRequest(@RequestBody @Valid WfhRequest wfhRequest) {
-        return new ResponseEntity<>(wfhService.submit(wfhRequest), HttpStatus.CREATED);
+    public ResponseEntity<WfhRequest> submitRequest(@RequestBody @Valid WfhRequestDTO wfhRequestDTO) {
+        return new ResponseEntity<>(wfhService.submit(wfhRequestDTO), HttpStatus.CREATED);
     }
 
 }
