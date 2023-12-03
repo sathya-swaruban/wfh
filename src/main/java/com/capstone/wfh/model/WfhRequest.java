@@ -28,4 +28,11 @@ public class WfhRequest {
     @NotEmpty
     @JsonFormat(pattern = "HH:mm", shape = JsonFormat.Shape.STRING)
     private String toTime;
+
+    public WfhRequest(String fromDate, String toDate, String fromTime, String toTime) {
+        this.fromDate = fromDate;
+        this.toDate = toDate;
+        this.fromTime = fromTime;
+        this.toTime = toTime;
+    }
 }
