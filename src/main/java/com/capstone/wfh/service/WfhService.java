@@ -2,6 +2,7 @@ package com.capstone.wfh.service;
 
 import com.capstone.wfh.exception.WfhException;
 import com.capstone.wfh.model.WfhRequest;
+import com.capstone.wfh.model.WfhRequestDTO;
 import com.capstone.wfh.repository.WfhRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,11 +21,11 @@ public class WfhService {
         this.wfhRepository = wfhRepository;
     }
 
-    private void validateDateAndTime(WfhRequest wfhRequest) {
-        String fromDate = wfhRequest.getFromDate();
-        String toDate = wfhRequest.getToDate();
-        String fromTime = wfhRequest.getFromTime();
-        String toTime = wfhRequest.getToTime();
+    private WfhRequest validateDateAndTime(WfhRequestDTO wfhRequestDTO) {
+        String fromDate = wfhRequestDTO.getFromDate();
+        String toDate = wfhRequestDTO.getToDate();
+        String fromTime = wfhRequestDTO.getFromTime();
+        String toTime = wfhRequestDTO.getToTime();
 
         if (!fromDate.equals(toDate)) {
             throw new RuntimeException(WfhException.DIFFERENTDATES);
@@ -43,10 +44,11 @@ public class WfhService {
         } else if (!wfhRepository.findByFromDate(fromDate).isEmpty()) {
             throw new RuntimeException(WfhException.REQUESTEXISTS);
         }
+        return new WfhRequest(fromDate, toDate, fromTime, toTime);
     }
 
-    public WfhRequest submit(WfhRequest wfhRequest) {
-        validateDateAndTime(wfhRequest);
+    public WfhRequest submit(WfhRequestDTO wfhRequestDTO) {
+        WfhRequest wfhRequest = validateDateAndTime(wfhRequestDTO);
         return wfhRepository.save(wfhRequest);
     }
 
