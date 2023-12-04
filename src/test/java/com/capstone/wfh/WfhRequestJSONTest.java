@@ -24,8 +24,15 @@ public class WfhRequestJSONTest {
                 "08:00",
                 "17:15"
         );
-        assertThat(json.write(wfhRequestDTO)).isStrictlyEqualToJson(
-                "{\"fromDate\":\"2023-12-01\",\"toDate\":\"2023-12-01\",\"fromTime\":\"08:00\",\"toTime\":\"17:15\"}");
+        String expected = """
+                {
+                    "fromDate": "2023-12-01",
+                    "toDate": "2023-12-01",
+                    "fromTime": "08:00",
+                    "toTime": "17:15"
+                }
+                """;
+        assertThat(json.write(wfhRequestDTO)).isStrictlyEqualToJson(expected);
         assertThat(json.write(wfhRequestDTO)).hasJsonPathStringValue("@.fromDate");
         assertThat(json.write(wfhRequestDTO)).extractingJsonPathStringValue("@.fromDate")
                 .asString().isEqualTo("2023-12-01");
