@@ -2,7 +2,7 @@ package com.capstone.wfh.service;
 
 import com.capstone.wfh.exception.WfhException;
 import com.capstone.wfh.model.WfhRequest;
-import com.capstone.wfh.model.WfhRequestDTO;
+import com.capstone.wfh.dto.WfhRequestDTO;
 import com.capstone.wfh.repository.WfhRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package com.capstone.wfh;
 
-import com.capstone.wfh.model.WfhRequestDTO;
+import com.capstone.wfh.dto.WfhRequestDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
