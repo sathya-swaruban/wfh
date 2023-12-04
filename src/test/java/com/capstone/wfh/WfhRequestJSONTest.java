@@ -40,4 +40,27 @@ public class WfhRequestJSONTest {
                 .asString().isEqualTo("17:15");
     }
 
+    @Test
+    void wfhRequestDeserializationTest() throws IOException {
+        String expected = """
+                {
+                    "fromDate": "2023-12-01",
+                    "toDate": "2023-12-01",
+                    "fromTime": "08:00",
+                    "toTime": "17:15"
+                }
+                """;
+        assertThat(json.parse(expected).getObject())
+                .isEqualTo(new WfhRequestDTO(
+                        "2023-12-01",
+                        "2023-12-01",
+                        "08:00",
+                        "17:15"
+                ));
+        assertThat(json.parseObject(expected).getFromDate()).isEqualTo("2023-12-01");
+        assertThat(json.parseObject(expected).getToDate()).isEqualTo("2023-12-01");
+        assertThat(json.parseObject(expected).getFromTime()).isEqualTo("08:00");
+        assertThat(json.parseObject(expected).getToTime()).isEqualTo("17:15");
+    }
+
 }
