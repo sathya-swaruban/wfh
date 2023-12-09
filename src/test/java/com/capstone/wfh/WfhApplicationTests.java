@@ -13,6 +13,7 @@ import java.net.URISyntaxException;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SuppressWarnings(value = "all")
 class WfhApplicationTests {
 
     @LocalServerPort
