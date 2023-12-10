@@ -1,7 +1,7 @@
 package com.capstone.wfh.controller;
 
-import com.capstone.wfh.model.WfhRequest;
 import com.capstone.wfh.dto.WfhRequestDTO;
+import com.capstone.wfh.model.WfhRequest;
 import com.capstone.wfh.service.WfhService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
