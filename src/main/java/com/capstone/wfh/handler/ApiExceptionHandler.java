@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ApiExceptionHandler {
 
     @ExceptionHandler(RuntimeException.class)
-    protected ResponseEntity<String> handleException(RuntimeException exception){
+    protected ResponseEntity<String> handleException(RuntimeException exception) {
         return ResponseEntity
                 .badRequest()
                 .body(exception.getMessage());
