@@ -11,6 +11,7 @@ import java.io.IOException;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @JsonTest
+@SuppressWarnings(value = "all")
 public class WfhRequestJSONTest {
 
     @Autowired
